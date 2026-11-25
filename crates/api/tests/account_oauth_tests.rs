@@ -244,7 +244,7 @@ fn encode_account_cookie(
             exp: (now + Duration::minutes(5)).timestamp() as usize,
             iat: now.timestamp() as usize,
         },
-        &EncodingKey::from_secret(TEST_SECRET.as_bytes()),
+        &EncodingKey::from_secret(TEST_SECRET.as_bytes()).unwrap(),
     )
     .unwrap()
 }

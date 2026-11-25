@@ -110,7 +110,7 @@ pub(super) fn encode(
             Ok(jsonwebtoken::encode(
                 &header,
                 &claims,
-                &EncodingKey::from_secret(config.secret.as_bytes()),
+                &EncodingKey::from_secret(config.secret.as_bytes())?,
             )?)
         }
         CookieCacheStrategy::Jwe => {
@@ -158,7 +158,7 @@ pub(super) fn decode(
             validation.validate_aud = false;
             let payload = jsonwebtoken::decode::<Value>(
                 value,
-                &DecodingKey::from_secret(config.secret.as_bytes()),
+                &DecodingKey::from_secret(config.secret.as_bytes()).ok()?,
                 &validation,
             )
             .ok()?

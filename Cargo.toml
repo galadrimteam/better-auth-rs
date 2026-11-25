@@ -60,7 +60,7 @@ validator = { version = "0.21", features = ["derive"] }
 argon2 = "0.5"
 rand = "0.8"
 base64 = "0.22"
-jsonwebtoken = { version = "11", default-features = false, features = ["rust_crypto"] }
+jsonwebtoken = { version = "12", default-features = false, features = ["rust_crypto"] }
 sha2 = "0.10"
 aes-gcm = "0.10"
 hkdf = "0.12"
@@ -111,7 +111,7 @@ async-trait = { workspace = true }
 # Serialization
 serde = { workspace = true }
 serde_json = { workspace = true }
-serde_yaml = "0.9"
+serde_yaml = { package = "yaml_serde", version = "0.10" }
 clap = { version = "4.5", features = ["derive"] }
 
 # Error handling
@@ -139,7 +139,7 @@ http-body-util = { version = "0.1", optional = true }
 [dev-dependencies]
 better-auth-seaorm = { workspace = true }
 tokio = { workspace = true, features = ["full", "test-util"] }
-serde_yaml = "0.9"
+serde_yaml = { package = "yaml_serde", version = "0.10" }
 tower-http = { version = "0.6", features = ["cors"] }
 tracing-subscriber = { workspace = true }
 oas3 = { version = "0.20.1", features = ["yaml-spec"] }

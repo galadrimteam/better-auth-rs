@@ -34,7 +34,7 @@ pub(crate) fn create_email_verification_token(
     Ok(encode(
         &Header::default(),
         &claims,
-        &EncodingKey::from_secret(secret.as_bytes()),
+        &EncodingKey::from_secret(secret.as_bytes())?,
     )?)
 }
 
@@ -47,7 +47,7 @@ pub(crate) fn decode_email_verification_token(
 
     Ok(decode::<EmailVerificationClaims>(
         token,
-        &DecodingKey::from_secret(secret.as_bytes()),
+        &DecodingKey::from_secret(secret.as_bytes())?,
         &validation,
     )?
     .claims)

@@ -154,7 +154,7 @@ pub(crate) fn create_database_state_cookie_value(secret: &str, state: &str) -> A
     Ok(encode(
         &Header::default(),
         &claims,
-        &EncodingKey::from_secret(secret.as_bytes()),
+        &EncodingKey::from_secret(secret.as_bytes())?,
     )?)
 }
 
@@ -163,7 +163,7 @@ pub(crate) fn decode_database_state_cookie_value(secret: &str, token: &str) -> A
     validation.validate_exp = true;
     Ok(decode::<StateCookieClaims>(
         token,
-        &DecodingKey::from_secret(secret.as_bytes()),
+        &DecodingKey::from_secret(secret.as_bytes())?,
         &validation,
     )?
     .claims
@@ -183,7 +183,7 @@ pub(crate) fn create_cookie_state_value(
     Ok(encode(
         &Header::default(),
         &claims,
-        &EncodingKey::from_secret(secret.as_bytes()),
+        &EncodingKey::from_secret(secret.as_bytes())?,
     )?)
 }
 
@@ -195,7 +195,7 @@ pub(crate) fn decode_cookie_state_value(
     validation.validate_exp = true;
     Ok(decode::<StatePayloadClaims>(
         token,
-        &DecodingKey::from_secret(secret.as_bytes()),
+        &DecodingKey::from_secret(secret.as_bytes())?,
         &validation,
     )?
     .claims
@@ -216,7 +216,7 @@ pub(crate) fn create_account_cookie_value(
     Ok(encode(
         &Header::default(),
         &claims,
-        &EncodingKey::from_secret(secret.as_bytes()),
+        &EncodingKey::from_secret(secret.as_bytes())?,
     )?)
 }
 
@@ -228,7 +228,7 @@ pub(crate) fn decode_account_cookie_value(
     validation.validate_exp = true;
     Ok(decode::<AccountCookieClaims>(
         token,
-        &DecodingKey::from_secret(secret.as_bytes()),
+        &DecodingKey::from_secret(secret.as_bytes())?,
         &validation,
     )?
     .claims

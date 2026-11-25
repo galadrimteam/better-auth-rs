@@ -55,7 +55,7 @@ pub(crate) fn create_admin_session_cookie_value(
     Ok(encode(
         &Header::default(),
         &claims,
-        &EncodingKey::from_secret(secret.as_bytes()),
+        &EncodingKey::from_secret(secret.as_bytes())?,
     )?)
 }
 
@@ -67,7 +67,7 @@ pub(crate) fn decode_admin_session_cookie_value(
     validation.validate_exp = true;
     let claims = decode::<AdminSessionCookieClaims>(
         token,
-        &DecodingKey::from_secret(secret.as_bytes()),
+        &DecodingKey::from_secret(secret.as_bytes())?,
         &validation,
     )?
     .claims;
